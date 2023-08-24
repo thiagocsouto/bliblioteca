@@ -1,22 +1,17 @@
 package br.com.bliblioteca.entity;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.FutureOrPresent;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.ManyToAny;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,17 +32,20 @@ public class Livro {
 	@NotBlank
 	private String titulo;
 	
+	@Column(name="ano")
+	private Integer ano;
+	
 	@NotBlank
-	@Size(max=400)
+	@Size(max=300)
+	@Column(name="resumo")
 	private String resumo; 
 	
 	@Column(name="sumário")
 	@NotBlank
 	private String sumario;
 	
-	@Column(name="preço")
-	@NotBlank
-	private String preco;
+	@Column(name="observação")
+	private String observação;
 	
 	@Column(name="página")
 	@NotBlank
@@ -57,8 +55,8 @@ public class Livro {
 	private String isbn;
 	
 	@Column(name="data_publicação")
-	@FutureOrPresent
-	private LocalDateTime dataDePublicacao;
+	@DateTimeFormat( pattern = "dd/MM/yyyy" )
+	private Date dataPublicacao;
 	
 //	@ManyToOne(cascade = CascadeType.ALL)
 //	@JoinColumn(name= "categoria_id")
@@ -67,18 +65,6 @@ public class Livro {
 //	@ManyToOne(cascade = CascadeType.ALL)
 //	@JoinColumn(name= "autor_id")
 //	private Autor autor;
-
-	public Livro(@NotBlank String titulo, @NotBlank @Size(max = 400) String resumo, @NotBlank String sumario,
-			@NotBlank String preco, @NotBlank String pagina, @NotBlank String isbn,
-			@FutureOrPresent LocalDateTime dataDePublicacao) {
-		this.titulo = titulo;
-		this.resumo = resumo;
-		this.sumario = sumario;
-		this.preco = preco;
-		this.pagina = pagina;  
-		this.isbn = isbn;
-		this.dataDePublicacao = dataDePublicacao;
-	}
 
 	
 }

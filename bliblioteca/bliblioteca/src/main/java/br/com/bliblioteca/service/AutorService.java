@@ -20,12 +20,6 @@ public class AutorService {
 	
 	public Autor salvarAutor(Autor autor) throws Exception {
 		
-		Autor emailExiste = autorRepository.findByEmail(autor.getEmail()); 
-		 
-		if (emailExiste!= null) {
-			throw new NegocioException("Email já cadastrado no sistema.");
-		}
-		
 		return autorRepository.save(autor);
 	}
 	

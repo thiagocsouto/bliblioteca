@@ -14,36 +14,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.bliblioteca.entity.Autor;
-import br.com.bliblioteca.entity.Cliente;
-import br.com.bliblioteca.service.AutorService;
-import br.com.bliblioteca.service.ClienteService;
+import br.com.bliblioteca.entity.Aluno;
+import br.com.bliblioteca.service.AlunoService;
 
 @RestController
 @RequestMapping("/clientes")
-public class ClienteController {
+public class AlunoController {
 	
 	@Autowired
-	private ClienteService clienteService;
+	private AlunoService alunoService;
 	
 	@GetMapping
-	public List<Cliente> listarClientes(){
-		return clienteService.listarClientes();
+	public List<Aluno> listarAlunos(){
+		return alunoService.listarAlunos();
 	}
 	
 	@GetMapping("/{id}")
-    public Optional<Cliente> listarClienteId(@PathVariable("id") Integer id) throws Exception{
-		return clienteService.listarClienteId(id);
+    public Optional<Aluno> listarALunoId(@PathVariable("id") Integer id) throws Exception{
+		return alunoService.listarAlunoId(id);
 	}
 	
 	@PostMapping
-	public Cliente adicionarCliente(@RequestBody @Valid Cliente cliente) throws Exception {		
-       return clienteService.salvarCliente(cliente);
+	public Aluno adicionarAluno(@RequestBody @Valid Aluno aluno) throws Exception {		
+       return alunoService.salvarCliente(aluno);
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deletarCliente(@PathVariable("id")Integer id) throws Exception {
-		clienteService.deletarClienteId(id);
+	public void deletarAluno(@PathVariable("id")Integer id) throws Exception {
+		alunoService.deletarAlunoId(id);
 	} 
 
 }
