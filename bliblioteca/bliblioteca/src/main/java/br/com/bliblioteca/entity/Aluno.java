@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -28,12 +29,14 @@ public class Aluno {
 	private Integer id;
 	
 	@NotBlank
+	@Pattern(regexp = "^[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÒÖÚÇÑ ]*$", message="Nome inválido.")
 	private String nome;
 	
     @CPF
 	private String cpf;
 	
 	@Column(name="matrícula")
+	@Pattern(regexp = "^[A][0-9]*$", message="Matrícula inválida.")
 	private String matricula;
 	
 	@Email
